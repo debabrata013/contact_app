@@ -88,11 +88,14 @@ const Home = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    //make ui more attractive and card are visible in grid mode
+    //make the header sticky
+
+    <div className="bg-black-50  mt-0">
       {/* Header */}
-      <header className="bg-white shadow">
-        <div className="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-gray-800 flex items-center">
+      <header className="bg-black shadow">
+        <div className=" mx-auto px-4 py-4 flex justify-between items-center">
+          <h1 className="text-2xl font-bold text-white flex items-center">
             <span className="mr-2">📒</span>
             Contacts
           </h1>
@@ -112,7 +115,7 @@ const Home = () => {
         </div>
       </header>
 
-      <main className="max-w-4xl mx-auto px-4 py-8">
+      <main className="mx-auto px-4 py-8">
         {/* Search and Add Contact Row */}
         <div className="flex flex-col md:flex-row gap-4 mb-6">
           <div className="relative flex-grow">
@@ -155,11 +158,11 @@ const Home = () => {
 
         {/* Add Contact Form */}
         {isAddingContact && user && (
-          <div className="mb-6 bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-            <h2 className="text-lg font-medium mb-4 text-gray-800">New Contact</h2>
-            <AddContactForm 
-              userId={user.id} 
-              fetchContacts={fetchContacts} 
+          <div className="mb-6 bg-black p-6 rounded-lg shadow-sm border border-gray-100">
+            <h2 className="text-lg font-medium mb-4 text-white">New Contact</h2>
+            <AddContactForm
+              userId={user.id}
+              fetchContacts={fetchContacts}
               onSuccess={() => setIsAddingContact(false)}
             />
           </div>
@@ -167,15 +170,25 @@ const Home = () => {
 
         {/* Contacts List */}
         {filteredContacts.length > 0 ? (
-          <div className="grid gap-4">
-            {filteredContacts.map((contact) => (
-              <ContactCard key={contact.id} contact={contact} fetchContacts={fetchContacts} />
-            ))}
-          </div>
+          // <div className="flex flex-wrap gap-4">
+          //   {filteredContacts.map((contact) => (
+          //     <ContactCard key={contact.id} contact={contact} fetchContacts={fetchContacts}  />
+          //   ))}
+          // </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+  {filteredContacts.map((contact) => (
+    <ContactCard
+      key={contact._id}
+      contact={contact}
+      fetchContacts={fetchContacts}
+    />
+  ))}
+</div>
+
         ) : (
-          <div className="text-center py-12 bg-white rounded-lg border border-gray-100 shadow-sm">
+          <div className="text-center py-12 bg-gray rounded-lg border border-gray-100 shadow-sm">
             <div className="flex justify-center mb-4">
-              <div className="p-4 bg-gray-100 rounded-full">
+              <div className="p-4 bg-gray-900 rounded-full">
                 <User size={32} className="text-gray-400" />
               </div>
             </div>

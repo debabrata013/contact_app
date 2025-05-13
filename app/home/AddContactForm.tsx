@@ -180,9 +180,9 @@ const AddContactForm: React.FC<AddContactFormProps> = ({
   };
 
   return (
-    <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-black">
       <div className="form-group md:col-span-2">
-        <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+        <label htmlFor="name" className="block text-sm font-medium text-gray-100 mb-1">
           Name
         </label>
         <div className="relative">
@@ -203,11 +203,11 @@ const AddContactForm: React.FC<AddContactFormProps> = ({
       </div>
 
       <div className="form-group">
-        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+        <label htmlFor="email" className="block text-sm font-medium text-gray-1100 mb-1">
           Email
         </label>
         <div className="relative">
-          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
+          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-white">
             <Mail size={16} />
           </div>
           <input
@@ -218,17 +218,17 @@ const AddContactForm: React.FC<AddContactFormProps> = ({
             onChange={handleChange}
             placeholder="email@example.com"
             required
-            className="w-full pl-10 py-2 px-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full pl-10 py-2 px-3 border border-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
       </div>
 
       <div className="form-group">
-        <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+        <label htmlFor="phone" className="block text-sm font-medium text-gray-100 mb-1">
           Phone
         </label>
         <div className="relative">
-          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
+          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-white">
             <Phone size={16} />
           </div>
           <input
