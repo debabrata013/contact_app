@@ -4,7 +4,7 @@ import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server'
 const isPublicRoute = createRouteMatcher(['/sign-in(.*)', '/sign-up(.*)'])
 
 // Protected routes ko define karo - dashboard aur admin ke liye
-const isProtectedRoute = createRouteMatcher(['/dashboard(.*)', '/admin(.*)', '/'])
+const isProtectedRoute = createRouteMatcher(['/home(.*)', '/admin(.*)', '/'])
 
 export default clerkMiddleware(async (auth, req) => {
   // Protected routes ke liye authentication check
