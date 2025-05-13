@@ -1,36 +1,126 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+````markdown
+# 📇 Contact Manager App
 
-First, run the development server:
+A modern contact manager built with **Next.js**, **Clerk Authentication**, and **MongoDB**. Logged-in users can securely manage their own contacts with options to add, edit, delete, call, WhatsApp, or email them.
+
+## ✨ Features
+
+- 🔐 User authentication with **Clerk**
+- 📥 Add new contacts (Name, Phone, Email)
+- 📄 View all contacts (only for logged-in user)
+- 🔍 Search contacts by name/email/phone
+- ✏️ Edit contact details
+- 🗑️ Delete contacts (with confirmation)
+- 📞 One-click Call, WhatsApp, and Email
+- 💾 Data stored securely in **MongoDB**
+
+---
+
+## 🛠️ Tech Stack
+
+| Technology | Description |
+|------------|-------------|
+| Next.js    | React framework for frontend & API routes |
+| Clerk      | Authentication (SignUp / SignIn / User ID) |
+| MongoDB    | NoSQL database to store contact data       |
+| TailwindCSS| Utility-first styling                      |
+
+---
+
+## 🔧 Setup Instructions
+
+### 1. Clone the Repo
+
+```bash
+git clone https://github.com/your-username/contact-manager-app.git
+cd contact-manager-app
+````
+
+### 2. Install Dependencies
+
+```bash
+npm install
+```
+
+### 3. Configure Environment Variables
+
+Create a `.env.local` file in the root and add:
+
+```env
+CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
+CLERK_SECRET_KEY=your_clerk_secret_key
+
+MONGODB_URI=your_mongodb_connection_string
+```
+
+### 4. Run the App
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+App will be live at: `http://localhost:3000`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🧠 Project Structure
 
-## Learn More
+```
+app/
+├── api/
+│   └── contacts/         # API route handlers (POST, GET, PUT, DELETE)
+├── page.tsx              # Home page after login
+components/
+├── ContactCard.tsx       # Contact UI with Call, WhatsApp, Email
+├── AddContactForm.tsx    # Form to add new contact
+utils/
+├── db.ts                 # MongoDB connection utility
+models/
+├── Contact.ts            # Mongoose schema for contact
+```
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🔒 Authentication Flow
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+* Uses **Clerk** for user login/signup.
+* Each contact is tied to the `userId` provided by Clerk.
+* API endpoints are protected to handle only that user's data.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📱 UI Preview
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+(Include a screenshot or short gif here)
+
+---
+
+## 🚀 Deployment (Optional)
+
+Can be deployed on **Vercel** with:
+
+* MongoDB Atlas for database
+* Clerk credentials set in Vercel environment variables
+
+---
+
+## 🤝 Contributing
+
+Pull requests are welcome. For major changes, please open an issue first.
+
+---
+
+## 📃 License
+
+MIT © 2025 Debabrata Pattnayak
+
+```
+
+---
+
+### ✅ Ready to Use:
+
+
+
+```
