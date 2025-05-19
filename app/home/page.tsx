@@ -1,60 +1,3 @@
-// "use client";
-// import { useUser, SignOutButton } from "@clerk/nextjs";
-// import { useEffect, useState } from "react";
-// import AddContactForm from "./AddContactForm";
-// import { ContactCard } from "./ContactCard";
-
-// const Home = () => {
-//   const { user } = useUser();
-//   const [contacts, setContacts] = useState([]);
-//   const [searchTerm, setSearchTerm] = useState("");
-
-//   const fetchContacts = async () => {
-//     if (!user) return;
-//     const res = await fetch(`/api/contacts?userId=${user.id}`);
-//     const data = await res.json();
-//     setContacts(data);
-//   };
-
-//   useEffect(() => {
-//     fetchContacts();
-//   }, [user]);
-
-//   const filteredContacts = contacts.filter((contact) =>
-//     contact.name.toLowerCase().includes(searchTerm.toLowerCase())
-//   );
-
-//   return (
-//     <div className="p-4 max-w-xl mx-auto">
-//       <div className="flex justify-between items-center mb-4">
-//         <h1 className="text-xl font-bold">📒 Your Contacts</h1>
-//         <SignOutButton>
-//           <button className="bg-red-500 text-white px-3 py-1 rounded">Logout</button>
-//         </SignOutButton>
-//       </div>
-
-//       {user && (
-//         <AddContactForm userId={user.id} fetchContacts={fetchContacts} />
-//       )}
-
-//       <input
-//         type="text"
-//         placeholder="🔍 Search contact..."
-//         value={searchTerm}
-//         onChange={(e) => setSearchTerm(e.target.value)}
-//         className="w-full p-2 mb-4 border rounded"
-//       />
-
-//       <div className="grid gap-4">
-//         {filteredContacts.map((c) => (
-//           <ContactCard key={c.id} contact={c} fetchContacts={fetchContacts} />
-//         ))}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Home;
 "use client";
 import { useUser, SignOutButton } from "@clerk/nextjs";
 import { useEffect, useState } from "react";
@@ -62,9 +5,17 @@ import AddContactForm from "./AddContactForm";
 import { ContactCard } from "./ContactCard";
 import { Search, PlusCircle, X, User } from "lucide-react";
 
+interface Contact {
+  _id: string;
+  id: string;
+  name: string;
+  email: string;
+  phone: string;
+}
+
 const Home = () => {
   const { user } = useUser();
-  const [contacts, setContacts] = useState([]);
+  const [contacts, setContacts] = useState<Contact[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [isAddingContact, setIsAddingContact] = useState(false);
 
@@ -79,22 +30,20 @@ const Home = () => {
     fetchContacts();
   }, [user]);
 
-  const filteredContacts = contacts.filter((contact) =>
-    contact.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredContacts = contacts.filter((contact) => {
+    if (!contact || !contact.name) return false;
+    return contact.name.toLowerCase().includes(searchTerm.toLowerCase());
+  });
 
   const handleClearSearch = () => {
     setSearchTerm("");
   };
 
   return (
-    //make ui more attractive and card are visible in grid mode
-    //make the header sticky
-
-    <div className="bg-black-50  mt-0">
+    <div className="bg-black-50 mt-0">
       {/* Header */}
       <header className="bg-black shadow">
-        <div className=" mx-auto px-4 py-4 flex justify-between items-center">
+        <div className="mx-auto px-4 py-4 flex justify-between items-center">
           <h1 className="text-2xl font-bold text-white flex items-center">
             <span className="mr-2">📒</span>
             Contacts
@@ -170,21 +119,15 @@ const Home = () => {
 
         {/* Contacts List */}
         {filteredContacts.length > 0 ? (
-          // <div className="flex flex-wrap gap-4">
-          //   {filteredContacts.map((contact) => (
-          //     <ContactCard key={contact.id} contact={contact} fetchContacts={fetchContacts}  />
-          //   ))}
-          // </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-  {filteredContacts.map((contact) => (
-    <ContactCard
-      key={contact._id}
-      contact={contact}
-      fetchContacts={fetchContacts}
-    />
-  ))}
-</div>
-
+            {filteredContacts.map((contact) => (
+              <ContactCard
+                key={contact._id}
+                contact={contact}
+                fetchContacts={fetchContacts}
+              />
+            ))}
+          </div>
         ) : (
           <div className="text-center py-12 bg-gray rounded-lg border border-gray-100 shadow-sm">
             <div className="flex justify-center mb-4">
