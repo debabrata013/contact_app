@@ -63,6 +63,20 @@ App will be live at: `http://localhost:3000`
 
 ---
 
+## 🏗️ Architecture Diagram
+
+![Contact Manager App Architecture](docs/contact_manager_architecture.png)
+
+The architecture diagram shows the complete system design including:
+- User access layer with load balancing
+- AWS Cloud infrastructure (VPC, ECS, ECR)
+- CI/CD pipeline with Jenkins
+- Development and production environments
+- External services integration (MongoDB Atlas, Clerk Authentication)
+- Monitoring and logging components
+
+---
+
 ## 🐳 DevOps Implementation
 
 This project implements several DevOps best practices for reliable, scalable deployment:
