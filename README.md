@@ -33,8 +33,8 @@ A modern contact manager built with **Next.js**, **Clerk Authentication**, and *
 ### 1. Clone the Repo
 
 ```bash
-git clone https://github.com/your-username/contact-manager-app.git
-cd contact-manager-app
+git clone https://github.com/debabrat013/contact_appp.git
+cd contact_appp
 ````
 
 ### 2. Install Dependencies
@@ -115,12 +115,3 @@ Pull requests are welcome. For major changes, please open an issue first.
 
 MIT © 2025 Debabrata Pattnayak
 
-```
-
----
-
-### ✅ Ready to Use:
-
-
-
-```
