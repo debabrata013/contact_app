@@ -1,0 +1,48 @@
+version: '3'
+
+services:
+  contact-app:
+    image: debabratap/contact-manager-app:latest
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - MONGODB_URI=${MONGODB_URI}
+      - CLERK_PUBLISHABLE_KEY=${CLERK_PUBLISHABLE_KEY}
+      - CLERK_SECRET_KEY=${CLERK_SECRET_KEY}
+    restart: always
+    networks:
+      - contact-app-network
+    deploy:
+      replicas: 2
+      update_config:
+        parallelism: 1
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+        max_attempts: 3
+        window: 120s
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/ssl:/etc/nginx/ssl
+    depends_on:
+      - contact-app
+    networks:
+      - contact-app-network
+    restart: always
+
+networks:
+  contact-app-network:
+    driver: bridge
