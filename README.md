@@ -224,6 +224,3 @@ Pull requests are welcome. For major changes, please open an issue first.
 
 ---
 
-## 📃 License
-
-MIT © 2025 Debabrata Pattnayak
