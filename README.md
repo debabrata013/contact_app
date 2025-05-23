@@ -134,7 +134,8 @@ This project implements several DevOps best practices for reliable, scalable dep
 
 ## 🐳 Docker Usage
 
-### Run with Docker
+
+## Run with Docker
 
 ```bash
 docker run -p 3000:3000 \
